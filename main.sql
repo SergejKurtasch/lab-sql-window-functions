@@ -184,9 +184,10 @@ with m_to_m as
 (
 select
 	customer_id, 
-	(y2005m06*2 - y2005m05) % 2 as m06,
-    (y2005m07*2 - y2005m06) % 2 as m07,
-    (y2005m08*2 - y2005m07) % 2 as m08
+	(case when y2005m06 = 1 and y2005m05 = 1 then 1 else 0 end) as m06,
+    (case when y2005m07 = 1 and y2005m06 = 1 then 1 else 0 end) as m07,
+    (case when y2005m08 = 1 and y2005m07 = 1 then 1 else 0 end) as m08
+    
 from customers_vs_month
 )
 select 
